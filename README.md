@@ -47,8 +47,8 @@ ssh 146.190.153.28   # JupyterHub Dev
 ```
 ### Clone this repo
 ```
-git clone https://github.com/indieagi/jupyter-deployment.git
-cd jupyter-deployment/
+git clone https://github.com/indieagi/jupyterhub.git
+cd jupyterhub/
 ```
 
 ### Install Docker
