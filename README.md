@@ -9,8 +9,8 @@ Static IP        DNS                       Description
 ```
 
 # Admin Consoles
-[JupyterHub Prod](https://cloud.digitalocean.com/projects/56c8818b-0d9d-4987-9f19-dd2e8d1cc76b/resources?i=1bc925)  
-[JupyterHub Dev](https://cloud.digitalocean.com/projects/85397053-3e63-4e04-a7ea-17801702c52d/resources?i=1bc925)  
+[Digital Ocean - JupyterHub Prod](https://cloud.digitalocean.com/projects/56c8818b-0d9d-4987-9f19-dd2e8d1cc76b/resources?i=1bc925)  
+[Digital Ocean - JupyterHub Dev](https://cloud.digitalocean.com/projects/85397053-3e63-4e04-a7ea-17801702c52d/resources?i=1bc925)  
 [NameCheap DNS - indieagi.org](https://ap.www.namecheap.com/domains/domaincontrolpanel/indieagi.org/domain)
 
 # File Descriptions
