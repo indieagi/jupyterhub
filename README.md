@@ -1,8 +1,11 @@
+# User & Admin Onboarding
+Email toby [at] indieagi [dot] org
+
 # Server Descriptions
 ```
 Static IP        DNS                       Description
 146.190.112.121  jupyter.indieagi.org      Stable prod env  
-xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env  
+146.190.153.28   jupyter-dev.indieagi.org  Unstable dev env  
 ```
 
 # Admin Consoles
@@ -74,7 +77,9 @@ docker-compose up -d  # starts JupyterHub in the background
 ```
 
 ### User Test of JupyterHub
-1. Navigate to ip address in Digital Ocean
+1. Navigate to the relevant IP address  
+- Prod: [146.190.112.121:8000](http://146.190.112.121:8000)  
+- Dev: [146.190.153.28:8000](http://146.190.153.28:8000) 
 2. The JupyterHub login screen should be presented
 
 ## 3 Configure DNS
