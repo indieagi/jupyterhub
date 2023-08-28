@@ -5,6 +5,11 @@ Static IP        DNS                       Description
 xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env [todo]  
 ```
 
+# Admin Consoles
+[JupyterHub Prod](https://cloud.digitalocean.com/projects/56c8818b-0d9d-4987-9f19-dd2e8d1cc76b/resources?i=1bc925)  
+[JupyterHub Dev](https://cloud.digitalocean.com/projects/85397053-3e63-4e04-a7ea-17801702c52d/resources?i=1bc925)  
+[NameCheap DNS - indieagi.org](https://ap.www.namecheap.com/domains/domaincontrolpanel/indieagi.org/domain)
+
 # File Descriptions
 ```
 ./jupyter-deployment/
@@ -19,17 +24,25 @@ xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env [todo]
     └── jupyterhub_config.py
 ```
 
+# Deployment
+## 1 Reinstall Kernel on VM
+You can usually skip this step if you haven't changed anything in `install-scripts`.
 
-## 1 Create Droplet in Digital Ocean
-Choose Ubuntu 22 LTS
+First, go to the appropriate Digital Ocean admin console:  
+- [JupyterHub Prod](https://cloud.digitalocean.com/projects/56c8818b-0d9d-4987-9f19-dd2e8d1cc76b/resources?i=1bc925)  
+- [JupyterHub Dev](https://cloud.digitalocean.com/projects/85397053-3e63-4e04-a7ea-17801702c52d/resources?i=1bc925) 
+
+Next, click on the Droplet. It will be `jupyterhub-dev` or `jupyterhub-prod`.
+
+Go to Destroy > Rubuild Droplet > Ubuntu 22.04 LTS > Rebuild
  
 ## 2 Configure Ubuntu VM
 ### ssh into the VM
 ```
-# Option 1: Go to the Digital Ocean console and use the web ssh terminal
+# Option 1: Go to the Digital Ocean admin console and use the web ssh terminal
 
 # Option 2: Use ssh on your desktop
-ssh 146.190.112.121
+ssh 146.190.112.121  # JupyterHub Prod
 ```
 ### Clone this repo
 ```
