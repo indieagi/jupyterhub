@@ -43,21 +43,21 @@ Go to Destroy > Rubuild Droplet > Ubuntu 22.04 LTS > Rebuild
 
 # Option 2: Use ssh on your desktop
 ssh 146.190.112.121  # JupyterHub Prod
+ssh 146.190.153.28   # JupyterHub Dev
 ```
 ### Clone this repo
 ```
-git clone https://github.com/indieagi/jupyterhub-deploy-docker.git
-cd jupyterhub-deploy-docker/
+git clone https://github.com/indieagi/jupyter-deployment.git
+cd jupyter-deployment/
 ```
 
 ### Install Docker
 ```
-cd ./indieagi-deploy/install-scripts
+cd ./install-scripts
 
 chmod +x install-docker.sh start-docker-on-boot.sh
 ./install-docker.sh
 ./start-docker-on-boot.sh
-
 ```
 
 ### Test Docker Install
@@ -68,23 +68,14 @@ docker run hello-world
 ### Install JupyterHub Server
 Run the following commands
 ```
-cd ./indieagi-deploy
+cd ./runtime-config
 docker-compose build
-docker-compose up -d
+docker-compose up -d  # starts JupyterHub in the background
 ```
 
 ### User Test of JupyterHub
 1. Navigate to ip address in Digital Ocean
 2. The JupyterHub login screen should be presented
-
-### Test that Notebooks are in the correct directory
-1. Login to your user in JupyterHub
-2. Create a new notebook called "hello_world.ipynb"
-3. ssh into the Droplet
-4. Run the following command to sanity check if the notebook was created. You will have to check subdirectories.
-```
-ls /mnt/jupyterhub_data
-```
 
 ## 3 Configure DNS
 1. Navigate to the [NameCheap advanced DNS console for indieagi.org](https://ap.www.namecheap.com/Domains/DomainControlPanel/indieagi.org/advancedns)
@@ -101,3 +92,15 @@ todo
 1. Navigate to jupyter.indieagi.org. Do not use the IP address.
 2. Login using a known working user account.
 3. If you get a 200 OK and get into your JupyterLab instance, SSL configuration is successful. If you get a 302 Redirect back to login, the JupyterHub SSL configuration is probably wrong.
+
+# Random
+## Tail JupyterHub Logs
+```
+cd ./runtime-config
+docker-compose build
+docker-compose up -d
+docker logs -f jupyterhub
+```
+## Login Doesn't Work for Known Valid User
+1. Check the Chrome Dev Tools Network logs during login
+2. If you get a 302, it may be an SSL configuration issue
