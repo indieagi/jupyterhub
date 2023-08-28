@@ -2,7 +2,7 @@
 ```
 Static IP        DNS                       Description
 146.190.112.121  jupyter.indieagi.org      Stable prod env  
-xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env [todo]  
+xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env  
 ```
 
 # Admin Consoles
