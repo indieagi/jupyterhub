@@ -1,14 +1,43 @@
-# 1 Create Droplet in Digital Ocean
+# Server Descriptions
+```
+Static IP        DNS                       Description
+146.190.112.121  jupyter.indieagi.org      Stable prod env  
+xxx.xxx.xxx.xxx  jupyter-dev.indieagi.org  Unstable dev env [todo]  
+```
+
+# File Descriptions
+```
+./jupyter-deployment/
+├── install-scripts  # scripts to run once on a new VM instance
+│   ├── install-docker.sh
+│   └── start-docker-on-boot.sh
+├── LICENSE
+├── README.md
+└── runtime-config  # configuration used when starting JupyterHub
+    ├── docker-compose.yml
+    ├── Dockerfile.jupyterhub
+    └── jupyterhub_config.py
+```
+
+
+## 1 Create Droplet in Digital Ocean
 Choose Ubuntu 22 LTS
  
-# 2 Configure Ubuntu VM
-## Clone this repo
+## 2 Configure Ubuntu VM
+### ssh into the VM
+```
+# Option 1: Go to the Digital Ocean console and use the web ssh terminal
+
+# Option 2: Use ssh on your desktop
+ssh 146.190.112.121
+```
+### Clone this repo
 ```
 git clone https://github.com/indieagi/jupyterhub-deploy-docker.git
 cd jupyterhub-deploy-docker/
 ```
 
-## Install Docker
+### Install Docker
 ```
 cd ./indieagi-deploy/install-scripts
 
@@ -18,56 +47,17 @@ chmod +x install-docker.sh start-docker-on-boot.sh
 
 ```
 
-## Test Docker Install
+### Test Docker Install
 ```
 docker run hello-world
 ```
 
-## Mount Volumes
-Create Digital Ocean volume via Digital Ocean console
-```
-cd ./indieagi-deploy/install-scripts
-chmod +x mount-volumes.sh
-./mount-volumes.sh
-```
-
-## Test Linux Volume Configuration
-First, reboot the system
-```
-reboot
-```
-
-Then, after the system reboots run
-```
-df -h | grep /mnt/jupyterhub_data
-```
-If output than successful if no output there is a problem.
-
-## Install JupyterHub Server
+### Install JupyterHub Server
 Run the following commands
 ```
 cd ./indieagi-deploy
 docker-compose build
 docker-compose up -d
-```
-
-## Test JupyterHub Server
-### Test Volume Configuration of JupyterHub Docker Container
-```
-docker inspect jupyterhub | grep /mnt/jupyterhub_data
-```
-You should see some output similar to this:
-```
-"Mounts": [
-  {
-    "Source": "/mnt/jupyterhub_data",
-    "Destination": "/data",
-    "Mode": "",
-    "RW": true,
-    "Propagation": "rprivate"
-  },
-  ...
-]
 ```
 
 ### User Test of JupyterHub
@@ -83,18 +73,18 @@ You should see some output similar to this:
 ls /mnt/jupyterhub_data
 ```
 
-# 3 Configure DNS
+## 3 Configure DNS
 1. Navigate to the [NameCheap advanced DNS console for indieagi.org](https://ap.www.namecheap.com/Domains/DomainControlPanel/indieagi.org/advancedns)
 2. Change the A record for jupyter.indieagi.org to your new Droplet's IP address
 
-## Test DNS Configuration
+### Test DNS Configuration
 1. Wait for the DNS records to propogate
 2. Navigate to jupyter.indieagi.org. If the login page for JupyterHub loads, DNS is configured correctly
 
-# 4 Configure SSL
+## 4 Configure SSL
 todo
 
-## Test SSL Configuration
+### Test SSL Configuration
 1. Navigate to jupyter.indieagi.org. Do not use the IP address.
 2. Login using a known working user account.
 3. If you get a 200 OK and get into your JupyterLab instance, SSL configuration is successful. If you get a 302 Redirect back to login, the JupyterHub SSL configuration is probably wrong.
