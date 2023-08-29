@@ -38,7 +38,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jupyterhub.rule=Host(`jupyter-dev.indieagi.org`)"
-      - "traefik.http.routers.jupyterhub.entrypoints=8000"
+      - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
       - "traefik.http.routers.certresolver=myresolver"
 
