@@ -24,8 +24,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
       # Bind Docker volume on host for JupyterHub database and cookie secrets
       - "jupyterhub-data:/data"
-    ports:
-      - "8000:8000"
     environment:
       # This username will be a JupyterHub admin
       JUPYTERHUB_ADMIN: admin
@@ -37,6 +35,31 @@ services:
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
       # Using this run command
       DOCKER_SPAWN_CMD: start-singleuser.sh
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jupyterhub.rule=Host(`jupyter-dev.indieagi.org`)"
+      - "traefik.http.routers.jupyterhub.entrypoints=8000"
+      - "traefik.http.routers.jupyterhub.tls=true"
+      - "traefik.http.routers.certresolver=myresolver"
+
+
+  traefik:
+    image: "traefik:v2.10"
+    container_name: "traefik"
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.storage=acme.json"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  
 
 volumes:
   jupyterhub-data:
@@ -44,3 +67,5 @@ volumes:
 networks:
   jupyterhub-network:
     name: jupyterhub-network
+
+
