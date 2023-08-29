@@ -37,6 +37,7 @@ services:
       DOCKER_SPAWN_CMD: start-singleuser.sh
     labels:
       - "traefik.enable=true"
+      # Put domain to host on between the backticks
       - "traefik.http.routers.jupyterhub.rule=Host(`jupyter-dev.indieagi.org`)"
       - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
@@ -52,6 +53,7 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme/acme.json"
+      # Put email here
       - "--certificatesresolvers.myresolver.acme.email=test@jupyter-dev.indieagi.org"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
     networks:
