@@ -57,6 +57,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme/acme.json"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--api.insecure=true"
+      = "--certificatesresolvers.myresolver.acme.email=test@jupyter-dev.indieagi.org"
     networks:
       - jupyterhub-network
     ports:
