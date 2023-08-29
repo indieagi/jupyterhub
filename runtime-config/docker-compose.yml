@@ -43,8 +43,6 @@ services:
       - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
       - "traefik.http.routers.certresolver=myresolver"
-      - "traefik.http.routers.jupyterhub.entrypoints=web"
-
 
   traefik:
     image: "traefik:v2.10"
@@ -57,6 +55,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme/acme.json"
       - "--api.insecure=true"
       - "--certificatesresolvers.myresolver.acme.email=test@jupyter-dev.indieagi.org"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
     networks:
       - jupyterhub-network
     ports:
