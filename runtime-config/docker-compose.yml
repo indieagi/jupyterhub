@@ -14,6 +14,8 @@ services:
     restart: always
     image: jupyterhub
     container_name: jupyterhub
+    ports:
+      - "8000:8000"
     networks:
       - jupyterhub-network
     volumes:
@@ -41,6 +43,7 @@ services:
       - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
       - "traefik.http.routers.certresolver=myresolver"
+      - "traefik.http.routers.jupyterhub.entrypoints=web"
 
 
   traefik:
@@ -51,7 +54,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.storage=acme.json"
+      - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme/acme.json"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--api.insecure=true"
     networks:
@@ -62,6 +65,8 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./acme:/etc/traefik/acme"  # Map acme.json to a host directory
+
   
 
 volumes:
@@ -70,5 +75,3 @@ volumes:
 networks:
   jupyterhub-network:
     name: jupyterhub-network
-
-
