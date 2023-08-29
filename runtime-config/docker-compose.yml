@@ -42,7 +42,8 @@ services:
       - "traefik.http.routers.jupyterhub.rule=Host(`jupyter-dev.indieagi.org`)"
       - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
-      - "traefik.http.routers.certresolver=myresolver"
+      - "traefik.http.routers.jupyterhub.tls.certresolver=myresolver"
+
 
   traefik:
     image: "traefik:v2.10"
