@@ -91,7 +91,9 @@ docker-compose up -d  # starts JupyterHub in the background
 2. Navigate to jupyter.indieagi.org. If the login page for JupyterHub loads, DNS is configured correctly
 
 ## 4 Configure SSL
-todo
+1. Open ./runtime-config/docker-compose.yml
+2. Change host to desired domain ```- "traefik.http.routers.jupyterhub.rule=Host(`example.org`)"```
+3. Change email for Let's Encrypt to desired email ```- "--certificatesresolvers.myresolver.acme.email=test@example.org"```
 
 ### Test SSL Configuration
 1. Navigate to jupyter.indieagi.org. Do not use the IP address.
