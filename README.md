@@ -28,7 +28,12 @@ Static IP        DNS                       Description
 ```
 
 # Deployment
-## 1 Reinstall Kernel on VM
+## 1 Reinstall Kernel on VM/Install a fresh instance
+
+### If you are creating a fresh instance
+
+
+### If you have a working instance
 You can usually skip this step if you haven't changed anything in `install-scripts`.
 
 First, go to the appropriate Digital Ocean admin console:  
