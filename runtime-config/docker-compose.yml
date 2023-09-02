@@ -35,6 +35,8 @@ services:
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
       # Using this run command
       DOCKER_SPAWN_CMD: start-singleuser.sh
+      # Making domain name from startup script accessible
+      JUPYTER_DOMAIN: ${JUPYTER_DOMAIN}
     labels:
       - "traefik.enable=true"
       # Put domain to host on between the backticks
