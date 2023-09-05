@@ -28,10 +28,16 @@ Static IP        DNS                       Description
 ```
 
 # Deployment
-## 1 Reinstall Kernel on VM/Install a fresh instance
+## 1 Reinstall Kernel on VM / Install a fresh instance
 
 ### If you are creating a fresh instance
 
+Create a new droplet with the following initialization script (On Digital Ocean create new droplet -> Advanced Options -> Add Initialization scripts (free)):
+```
+#!/bin/bash
+echo "export JUPYTER_DOMAIN=mydomain.com" >> /etc/environment
+```
+Note. Please replace mydomain.com with your website domain eg. `jupyter-dev.indieagi.org`
 
 ### If you have a working instance
 You can usually skip this step if you haven't changed anything in `install-scripts`.
