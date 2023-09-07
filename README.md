@@ -60,14 +60,14 @@ If you are setting up the *Dev environment*, run:
 cd ./install-scripts
 
 chmod +x install-docker.sh start-docker-on-boot.sh set-dev-env-variables.sh
-set-dev-env-variables.sh
+./set-dev-env-variables.sh
 ```
 If you are setting up the *Prod environment*, run:
 ```
 cd ./install-scripts
 
 chmod +x install-docker.sh start-docker-on-boot.sh set-prod-env-variables.sh
-set-prod-env-variables.sh
+./set-prod-env-variables.sh
 ```
 
 ### Install Docker
