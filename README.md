@@ -55,13 +55,11 @@ cd jupyterhub/
 ```
 
 ### Set-up Environment Variables
-
 Run:
 ```
 cd install-scripts
 chmod +x *.sh
 ```
-
 Then, if you are setting up the *Dev environment*, run:
 ```
 ./set-dev-env-variables.sh
