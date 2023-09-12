@@ -23,7 +23,7 @@ services:
       # within the container
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
       # Bind Docker volume on host for JupyterHub database and cookie secrets
-      - "jupyterhub-data:/data"
+      - "${MOUNTED_VOLUME}:/data"
     environment:
       # This username will be a JupyterHub admin
       JUPYTERHUB_ADMIN: admin
@@ -66,15 +66,6 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./acme:/etc/traefik/acme"  # Map acme.json to a host directory
-
-  
-
-volumes:
-  jupyterhub-data:
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/volume_sfo3_01
 
 networks:
   jupyterhub-network:
