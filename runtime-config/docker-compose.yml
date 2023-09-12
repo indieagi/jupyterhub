@@ -35,10 +35,12 @@ services:
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
       # Using this run command
       DOCKER_SPAWN_CMD: start-singleuser.sh
+      # Making domain name from startup script accessible
+      JUPYTER_DOMAIN: ${JUPYTER_DOMAIN}
     labels:
       - "traefik.enable=true"
       # Put domain to host on between the backticks
-      - "traefik.http.routers.jupyterhub.rule=Host(`jupyter-dev.indieagi.org`)"
+      - "traefik.http.routers.jupyterhub.rule=Host(`${JUPYTER_DOMAIN}`)"
       - "traefik.http.services.jupyterhub.loadbalancer.server.port=8000"
       - "traefik.http.routers.jupyterhub.tls=true"
       - "traefik.http.routers.jupyterhub.tls.certresolver=myresolver"

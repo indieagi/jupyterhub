@@ -54,11 +54,25 @@ git clone https://github.com/indieagi/jupyterhub.git
 cd jupyterhub/
 ```
 
+### Set-up Environment Variables
+Run:
+```
+cd install-scripts
+chmod +x *.sh
+```
+Then, if you are setting up the *Dev environment*, run:
+```
+./set-dev-env-variables.sh
+```
+Else, if you are setting up the *Prod environment*, run:
+```
+./set-prod-env-variables.sh
+```
+
 ### Install Docker
 ```
 cd ./install-scripts
 
-chmod +x install-docker.sh start-docker-on-boot.sh
 ./install-docker.sh
 ./start-docker-on-boot.sh
 ```
