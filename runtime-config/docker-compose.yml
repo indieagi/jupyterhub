@@ -71,6 +71,10 @@ services:
 
 volumes:
   jupyterhub-data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/volume_sfo3_01
 
 networks:
   jupyterhub-network:
