@@ -1,0 +1,1 @@
+echo "export JUPYTER_DOMAIN=jupyter-dev.indieagi.org" >> /etc/environment
